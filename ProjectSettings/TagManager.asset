@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Line_Boost
-  - Line_Bouncy
   - Line_Normal
   - Lines
   layers:
@@ -15,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - EmbeddedLogic
   - 
   - 
   - 

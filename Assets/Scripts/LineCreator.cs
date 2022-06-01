@@ -2,38 +2,61 @@
 
 public class LineCreator : MonoBehaviour
 {
-    public GameObject[] linePrefabs;
+    public GameObject[] LinePrefabs;
 
-    LineCreator listLines;
-    Line activeLine;
-
-    private const int LeftMouseButtonCode = 0;
+    private Line _activeLine;
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.GetMouseButtonDown(LeftMouseButtonCode))
+        // if (Input.GetMouseButtonDown(MouseButtonCodes.LeftMouseButton) && Input.GetMouseButtonDown(MouseButtonCodes.RightMouseButton))
+        // {
+        //     _activeLine = null;
+        //     return;
+        // }
+
+        if (Input.GetMouseButtonDown(MouseButtonCodes.LeftMouseButton))
         {
-            int index = ChangeLine();
-            GameObject lineGO = Instantiate(linePrefabs[index]);
-            activeLine = lineGO.GetComponent<Line>();
+            SetActiveLineToNormal();
+        }
+        if (Input.GetMouseButtonDown(MouseButtonCodes.RightMouseButton))
+        {
+            SetActiveLineToBoost();
         }
 
-        if (Input.GetMouseButtonUp(LeftMouseButtonCode))
+        if (Input.GetMouseButtonUp(MouseButtonCodes.LeftMouseButton) || Input.GetMouseButtonUp(MouseButtonCodes.RightMouseButton))
         {
-            activeLine = null;
+            _activeLine = null;
         }
 
-        if (activeLine != null)
+        if (_activeLine == null)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            activeLine.UpdateLine(mousePos);
+            return;
         }
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _activeLine.UpdateLine(mousePos);
     }
 
-    int ChangeLine()
+    private void SetActiveLineToNormal()
     {
-        int index = Random.Range(0, 3);
-        return index;
+        var lineGameObject = Instantiate(LinePrefabs[LinePrefabIndexes.LineNormalPrefab]);
+        _activeLine = lineGameObject.GetComponent<Line>();
+    }
+    private void SetActiveLineToBoost()
+    {
+        var lineGameObject = Instantiate(LinePrefabs[LinePrefabIndexes.LineBoostPrefab]);
+        _activeLine = lineGameObject.GetComponent<Line>();
+    }
+
+    private static class MouseButtonCodes
+    {
+        public static int LeftMouseButton => 0;
+        public static int RightMouseButton => 1;
+    }
+
+    private static class LinePrefabIndexes
+    {
+        public static int LineNormalPrefab => 0;
+        public static int LineBoostPrefab => 1;
     }
 }
