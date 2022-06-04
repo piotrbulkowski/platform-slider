@@ -14,8 +14,7 @@ public class Player : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
 
-        // TODO Check if canvas not breaks reference
-        Debug.Log("Started");
+
         Text myText = GameObject.Find("CurrentTimeScore").GetComponent<Text>();
         myText.text = "Time Since Loaded : " + Time.timeSinceLevelLoad;
     }
