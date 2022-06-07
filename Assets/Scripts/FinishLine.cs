@@ -12,6 +12,7 @@ public class FinishLine : MonoBehaviour
             float elapsedTime = Time.timeSinceLevelLoad;
 
             Debug.Log($"Finish time {elapsedTime}");
+            GameState.isRunning = false;
 
             // First save
             if (playerTime == 0.0)
@@ -27,13 +28,8 @@ public class FinishLine : MonoBehaviour
             }
 
             Debug.Log("Ride finished");
-            PauseGame(); // TODO And navigate to the next level
+            // TODO Show navigation to the next level
         }
-    }
-
-    void PauseGame()
-    {
-        Time.timeScale = 0;
     }
 
     void UpdateBestTimeCounter(float time)

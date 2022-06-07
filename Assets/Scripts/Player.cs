@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        GameState.isRunning = true;
         float bestResult = PlayerPrefs.GetFloat("Player Score", 0.0f);
 
         GameObject bestScoreObject = GameObject.Find("BestTimeScore");
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
 
         GameObject bestScoreObject = GameObject.Find("CurrentTimeScore");
         TextMeshProUGUI currentScore = bestScoreObject.GetComponent<TextMeshProUGUI>();
-        if (currentScore != null)
+        if (currentScore != null && GameState.isRunning)
         {
             currentScore.text = $"Current: {Time.timeSinceLevelLoad}s";
         }
