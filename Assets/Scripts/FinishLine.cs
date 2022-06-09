@@ -8,11 +8,12 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            GameState.isRunning = false;
+
             float playerTime = PlayerPrefs.GetFloat("Player Score");
             float elapsedTime = Time.timeSinceLevelLoad;
 
             Debug.Log($"Finish time {elapsedTime}");
-            GameState.isRunning = false;
 
             // First save
             if (playerTime == 0.0)

@@ -10,11 +10,5 @@ public class RefreshScene : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
-        ResumeGame();
-    }
-
-    void ResumeGame()
-    {
-        Time.timeScale = 1f;
     }
 }
