@@ -8,6 +8,8 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            GameState.isRunning = false;
+
             float playerTime = PlayerPrefs.GetFloat("Player Score");
             float elapsedTime = Time.timeSinceLevelLoad;
 
@@ -27,13 +29,8 @@ public class FinishLine : MonoBehaviour
             }
 
             Debug.Log("Ride finished");
-            PauseGame(); // TODO And navigate to the next level
+            // TODO Show navigation to the next level
         }
-    }
-
-    void PauseGame()
-    {
-        Time.timeScale = 0;
     }
 
     void UpdateBestTimeCounter(float time)
