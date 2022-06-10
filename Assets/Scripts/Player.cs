@@ -17,10 +17,6 @@ public class Player : MonoBehaviour
         {
             bestScore.text = $"Best: {bestResult}s";
         }
-        else
-        {
-            Debug.Log("Best score object is null");
-        }
     }
 
     // Update is called once per frame
@@ -36,10 +32,6 @@ public class Player : MonoBehaviour
         if (currentScore != null && GameState.isRunning)
         {
             currentScore.text = $"Current: {Time.timeSinceLevelLoad}s";
-        }
-        else
-        {
-            Debug.Log("Current score object is null");
         }
     }
 }

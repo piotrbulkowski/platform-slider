@@ -29,7 +29,9 @@ public class FinishLine : MonoBehaviour
             }
 
             Debug.Log("Ride finished");
-            GameObject bestScoreObject = GameObject.Find("FinishPanel");
+
+            GameObject finishPanel = FindInActiveObjectByName("FinishPanel");
+            finishPanel.SetActive(true);
         }
     }
 
@@ -41,5 +43,21 @@ public class FinishLine : MonoBehaviour
         {
             bestScore.text = $"Best: {time}s";
         }
+    }
+
+    GameObject FindInActiveObjectByName(string name)
+    {
+        Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
+        for (int i = 0; i < objs.Length; i++)
+        {
+            if (objs[i].hideFlags == HideFlags.None)
+            {
+                if (objs[i].name == name)
+                {
+                    return objs[i].gameObject;
+                }
+            }
+        }
+        return null;
     }
 }
