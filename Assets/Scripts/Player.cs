@@ -9,17 +9,13 @@ public class Player : MonoBehaviour
     void Start()
     {
         GameState.isRunning = true;
-        float bestResult = PlayerPrefs.GetFloat("Player Score", 0.0f);
+        float bestResult = ScoreRepository.GetScore(GameState.GetActiveSceneIndex());
 
         GameObject bestScoreObject = GameObject.Find("BestTimeScore");
         TextMeshProUGUI bestScore = bestScoreObject.GetComponent<TextMeshProUGUI>();
         if (bestScore != null)
         {
             bestScore.text = $"Best: {bestResult}s";
-        }
-        else
-        {
-            Debug.Log("Best score object is null");
         }
     }
 
@@ -36,10 +32,6 @@ public class Player : MonoBehaviour
         if (currentScore != null && GameState.isRunning)
         {
             currentScore.text = $"Current: {Time.timeSinceLevelLoad}s";
-        }
-        else
-        {
-            Debug.Log("Current score object is null");
         }
     }
 }

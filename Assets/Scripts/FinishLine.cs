@@ -10,26 +10,29 @@ public class FinishLine : MonoBehaviour
         {
             GameState.isRunning = false;
 
-            float playerTime = PlayerPrefs.GetFloat("Player Score");
+            float playerTime = ScoreRepository.GetScore(GameState.GetActiveSceneIndex());
             float elapsedTime = Time.timeSinceLevelLoad;
 
             Debug.Log($"Finish time {elapsedTime}");
 
             // First save
-            if (playerTime == 0.0)
+            if (playerTime == 0f)
             {
-                PlayerPrefs.SetFloat("Player Score", elapsedTime);
+                ScoreRepository.SetScore(GameState.GetActiveSceneIndex(), elapsedTime);
+                UpdateBestTimeCounter(elapsedTime);
             }
 
             // Update when better
             if (elapsedTime > 0.0 && elapsedTime < playerTime)
             {
                 UpdateBestTimeCounter(elapsedTime);
-                PlayerPrefs.SetFloat("Player Score", elapsedTime);
+                ScoreRepository.SetScore(GameState.GetActiveSceneIndex(), elapsedTime);
             }
 
             Debug.Log("Ride finished");
-            // TODO Show navigation to the next level
+
+            GameObject finishPanel = FindInActiveObjectByName("FinishPanel");
+            finishPanel.SetActive(true);
         }
     }
 
@@ -41,5 +44,21 @@ public class FinishLine : MonoBehaviour
         {
             bestScore.text = $"Best: {time}s";
         }
+    }
+
+    GameObject FindInActiveObjectByName(string name)
+    {
+        Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
+        for (int i = 0; i < objs.Length; i++)
+        {
+            if (objs[i].hideFlags == HideFlags.None)
+            {
+                if (objs[i].name == name)
+                {
+                    return objs[i].gameObject;
+                }
+            }
+        }
+        return null;
     }
 }
