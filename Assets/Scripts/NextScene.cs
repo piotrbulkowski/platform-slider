@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class NextScene : MonoBehaviour
     // Start is called before the first frame update
     public void Load()
     {
-        int nextSceneIndex = GameState.GetActiveSceneIndex() + 1;
+        int nextSceneIndex = GameManager.Instance.GetActiveSceneIndex() + 1;
         string nextSceneName = "Scene" + nextSceneIndex;
 
 

@@ -1,12 +1,18 @@
 ﻿using UnityEngine.SceneManagement;
 
-public static class GameState
+public class GameState
 {
-    public static readonly int utilSceneCount = 2; // Number of scenes that are not playable
-    public static bool isRunning = true;
+    public int utilSceneCount { get; private set; } // Number of scenes that are not playable
+    public bool isRunning { get; set; }
 
-    public static int GetActiveSceneIndex()
+    private GameState(int utilSceneCount)
     {
-        return SceneManager.GetActiveScene().buildIndex - utilSceneCount;
+        this.utilSceneCount = utilSceneCount;
+        isRunning = false;
+    }
+
+    public static GameState Create()
+    {
+        return new GameState(utilSceneCount: 2);
     }
 }

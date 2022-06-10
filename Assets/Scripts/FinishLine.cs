@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using TMPro;
 using UnityEngine;
 
@@ -8,9 +9,9 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            GameState.isRunning = false;
+            GameManager.Instance.Stop();
 
-            float playerTime = ScoreRepository.GetScore(GameState.GetActiveSceneIndex());
+            float playerTime = ScoreRepository.GetScore(GameManager.Instance.GetActiveSceneIndex());
             float elapsedTime = Time.timeSinceLevelLoad;
 
             Debug.Log($"Finish time {elapsedTime}");
@@ -18,7 +19,7 @@ public class FinishLine : MonoBehaviour
             // First save
             if (playerTime == 0f)
             {
-                ScoreRepository.SetScore(GameState.GetActiveSceneIndex(), elapsedTime);
+                ScoreRepository.SetScore(GameManager.Instance.GetActiveSceneIndex(), elapsedTime);
                 UpdateBestTimeCounter(elapsedTime);
             }
 
@@ -26,7 +27,7 @@ public class FinishLine : MonoBehaviour
             if (elapsedTime > 0.0 && elapsedTime < playerTime)
             {
                 UpdateBestTimeCounter(elapsedTime);
-                ScoreRepository.SetScore(GameState.GetActiveSceneIndex(), elapsedTime);
+                ScoreRepository.SetScore(GameManager.Instance.GetActiveSceneIndex(), elapsedTime);
             }
 
             Debug.Log("Ride finished");
