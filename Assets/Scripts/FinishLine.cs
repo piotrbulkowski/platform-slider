@@ -29,7 +29,7 @@ public class FinishLine : MonoBehaviour
             }
 
             Debug.Log("Ride finished");
-            // TODO Show navigation to the next level
+            GameObject bestScoreObject = GameObject.Find("FinishPanel");
         }
     }
 

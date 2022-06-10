@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class RefreshScene : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public void Run()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
