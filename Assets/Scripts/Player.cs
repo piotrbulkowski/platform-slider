@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         GameState.isRunning = true;
-        float bestResult = PlayerPrefs.GetFloat("Player Score", 0.0f);
+        float bestResult = ScoreRepository.GetScore(GameState.GetActiveSceneIndex());
 
         GameObject bestScoreObject = GameObject.Find("BestTimeScore");
         TextMeshProUGUI bestScore = bestScoreObject.GetComponent<TextMeshProUGUI>();

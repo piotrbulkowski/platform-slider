@@ -12,12 +12,13 @@ public class NextScene : MonoBehaviour
         string nextSceneName = "Scene" + nextSceneIndex;
 
 
-        if (SceneManager.GetSceneByName(nextSceneName).IsValid())
+        if (SceneUtility.GetBuildIndexByScenePath(nextSceneName) != -1)
         {
             SceneManager.LoadScene(nextSceneName);
         }
         else
         {
+            Debug.Log($"The scene {nextSceneName} not exists");
             SceneManager.LoadScene("Home");
         }
     }

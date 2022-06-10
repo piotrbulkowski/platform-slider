@@ -10,22 +10,23 @@ public class FinishLine : MonoBehaviour
         {
             GameState.isRunning = false;
 
-            float playerTime = PlayerPrefs.GetFloat("Player Score");
+            float playerTime = ScoreRepository.GetScore(GameState.GetActiveSceneIndex());
             float elapsedTime = Time.timeSinceLevelLoad;
 
             Debug.Log($"Finish time {elapsedTime}");
 
             // First save
-            if (playerTime == 0.0)
+            if (playerTime == 0f)
             {
-                PlayerPrefs.SetFloat("Player Score", elapsedTime);
+                ScoreRepository.SetScore(GameState.GetActiveSceneIndex(), elapsedTime);
+                UpdateBestTimeCounter(elapsedTime);
             }
 
             // Update when better
             if (elapsedTime > 0.0 && elapsedTime < playerTime)
             {
                 UpdateBestTimeCounter(elapsedTime);
-                PlayerPrefs.SetFloat("Player Score", elapsedTime);
+                ScoreRepository.SetScore(GameState.GetActiveSceneIndex(), elapsedTime);
             }
 
             Debug.Log("Ride finished");
