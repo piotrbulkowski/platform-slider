@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 
 public class LineCreator : MonoBehaviour
 {
@@ -9,11 +10,10 @@ public class LineCreator : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        // if (Input.GetMouseButtonDown(MouseButtonCodes.LeftMouseButton) && Input.GetMouseButtonDown(MouseButtonCodes.RightMouseButton))
-        // {
-        //     _activeLine = null;
-        //     return;
-        // }
+        if(GameManager.Instance.IsGameRunning() is false)
+        {
+            return;
+        }
 
         if (Input.GetMouseButtonDown(MouseButtonCodes.LeftMouseButton))
         {
