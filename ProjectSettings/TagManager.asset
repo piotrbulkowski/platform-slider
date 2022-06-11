@@ -15,7 +15,7 @@ TagManager:
   - Water
   - UI
   - EmbeddedLogic
-  - 
+  - Bg
   - 
   - 
   - 
@@ -43,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bg
+    uniqueID: 3286032409
+    locked: 0
+  - name: Top
+    uniqueID: 3405578507
     locked: 0

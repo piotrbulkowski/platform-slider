@@ -1,14 +1,13 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     public Rigidbody2D rb;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.GetButtonDown("Start"))
+        if (GameManager.Instance.IsGameRunning())
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
