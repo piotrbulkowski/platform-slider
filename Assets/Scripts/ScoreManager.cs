@@ -12,14 +12,14 @@ namespace Assets.Scripts
         {
             if (GameManager.Instance.IsGameRunning())
             {
-                CurrentScoreComponent.text = $"Current:{Time.timeSinceLevelLoad:0.00}";
+                CurrentScoreComponent.text = $"Current:{Time.timeSinceLevelLoad:0.00}s";
             }
         }
 
         public void UpdateBestTimeScore()
         {
             var bestTimeResult = ScoreRepository.GetScore(GameManager.Instance.GetActiveSceneIndex());
-            BestScoreComponent.text = $"Best:{bestTimeResult:0.00}";
+            BestScoreComponent.text = $"Best:{bestTimeResult:0.00}s";
         }
     }
 }

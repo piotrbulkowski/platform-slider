@@ -17,14 +17,10 @@ public class LineCreator : MonoBehaviour
 
         if (Input.GetMouseButtonDown(MouseButtonCodes.LeftMouseButton))
         {
-            SetActiveLineToNormal();
-        }
-        if (Input.GetMouseButtonDown(MouseButtonCodes.RightMouseButton))
-        {
             SetActiveLineToBoost();
         }
 
-        if (Input.GetMouseButtonUp(MouseButtonCodes.LeftMouseButton) || Input.GetMouseButtonUp(MouseButtonCodes.RightMouseButton))
+        if (Input.GetMouseButtonUp(MouseButtonCodes.LeftMouseButton))
         {
             _activeLine = null;
         }
@@ -37,11 +33,12 @@ public class LineCreator : MonoBehaviour
         _activeLine.UpdateLine(mousePos);
     }
 
-    private void SetActiveLineToNormal()
-    {
-        var lineGameObject = Instantiate(LinePrefabs[LinePrefabIndexes.LineNormalPrefab]);
-        _activeLine = lineGameObject.GetComponent<Line>();
-    }
+    // Unused for now
+    //private void SetActiveLineToNormal()
+    //{
+    //    var lineGameObject = Instantiate(LinePrefabs[LinePrefabIndexes.LineNormalPrefab]);
+    //    _activeLine = lineGameObject.GetComponent<Line>();
+    //}
     private void SetActiveLineToBoost()
     {
         var lineGameObject = Instantiate(LinePrefabs[LinePrefabIndexes.LineBoostPrefab]);
